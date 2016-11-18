@@ -1,0 +1,25 @@
+<h1>Details for product <%=@product.title%></h1>
+<%if !@closed%>
+<ul>
+    <li>Created by <%=@product.user.name%></li>
+    <li><%=@product.description%></li>
+    <li>Minimum ammount: <%=@product.minimum%> €</li>
+    <li>Deadline: <%=@product.deadline%></li>
+</ul>
+<h2>Bids</h2>
+<ul>
+  <%@product.bids.each do |bid|%>
+    <li><%=bid.amount%> by user <%=bid.user_id%></li>
+  <%end%>
+</ul>
+<h2>Make a bid</h2>
+<%= form_for @my_bid , :url => {:controller=> "bids",:action => "create"} do |f|%>
+  <%= f.label :amount%>
+  <%= f.text_field :amount%>
+  <%= f.hidden_field :product_id , :value=>@product.id%>
+  <%= f.button%>
+<%end%>
+<%end%>
+<%if @closed%>
+<h2>The winner is <%=@winner%></h2>
+<%end%>

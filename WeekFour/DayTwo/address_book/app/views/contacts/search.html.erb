@@ -1,0 +1,10 @@
+<ul>
+  <%@contacts.each do |contact|%>
+    <li>
+      <%= link_to contact.name, :controller => :contacts, :action => :details, :id => contact.id %>
+      <% if contact.favorite == true %>
+        <span>favorite</span>
+      <%end%>
+      <%= link_to "Make favorite", :controller => :contacts, :action => :favorite, :id => contact.id %></li>
+  <%end%>
+</ul>

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hellow world</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1 class="animated rubberBand infinite">Hello <%=@name%></h1>
+  <%@pizzas.each do |pizza|%>
+    <li><%=pizza%></li>
+  <%end%>
+</body>
+</html>

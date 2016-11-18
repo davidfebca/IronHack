@@ -1,0 +1,23 @@
+<section class="secttion" style="margin-top:100px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+          <h1 style="text-align:center;">All my movies</h1>
+          <ul>
+            <%@movies.each do |movie|%>
+              <li><%=movie.title%> - <%= link_to "Details", {:controller => "movies", :action => "details", :id => movie.id }%></li>
+            <%end%>
+          </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Search for a movie</h2>
+        <form action="/search"   method ="GET">
+            <div class="form-group">
+              <input class="form-control" type="text" name="query" id="query">
+            </div>
+            <button class="btn btn-default form-control" type="submit">Search a movie</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<h1>Word Central</h1>
+
+<h2>Submit text for inspection</h2>
+
+<form action="/ipsum/create" method="post">
+   <div>
+     <label for="words"></label>
+     <select name="ipsum[palabras]" id="words">
+       <option value="0">0 palabra</option>
+       <option value="1">1 palabara</option>
+       <option value="2">2 palabras</option>
+       <option value="3">3 palabras</option>
+     </select>
+   </div>
+   <div>
+     <label for="ipsum"></label>
+     <select name="ipsum[parrafos]" id="ipsum">
+       <option value="1">1 párrafo</option>
+       <option value="2">2 párrafos</option>
+       <option value="3">3 párrafos</option>
+     </select>
+   </div>
+   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"/>
+   <button type="submit">Submit text</button>
+
+</form>

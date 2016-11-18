@@ -1,0 +1,21 @@
+<section class="concerts">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <ul>
+          <%@artists.each do |artist|%>
+            <li><%=artist.name%> <%=link_to "Delete" , controller:"artists",action:"delete",id:artist.id%></li>
+          <%end%>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Add new city</h2>
+        <%= form_for @artist do |f|%>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+          <%= f.button%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</section>

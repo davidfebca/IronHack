@@ -1,0 +1,31 @@
+<section class="secttion" style="margin-top:100px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+          <h1 style="text-align:center;"><%= @movie.title%></h1>
+          <img src="<%=@movie.poster%>" class="img-responsive" alt="<%=@movie.title%>">
+          <p>Year: <%=@movie.year%></p>
+          <p>Synopsis: <%=@movie.synopsis%></p>
+          <hr>
+          <h2>Comments</h2>
+          <ul>
+            <%@movie.comments.each do |comment|%>
+              <li><%=comment.content%> - by  <%= link_to comment.user.username, {:controller => "users", :action => "details", :id => comment.user.id }%> on <%=comment.created_at%></li>
+            <%end%>
+          </ul>
+      </div>
+      <div class="col-md-6">
+        <%if @logged%>
+        <%= form_for @comment do |f|%>
+          <%= f.label :content %>
+          <%= f.text_field :content %>
+          <%= f.hidden_field :movie_id, :value=>@movie.id%>
+          <%= f.button%>
+        <%end%>
+        <%else%>
+          <p>Login to comment the movie</p>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</section>

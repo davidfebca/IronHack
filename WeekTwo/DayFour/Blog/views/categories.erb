@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Blog</title>
+  <meta name="description" content="My Blog">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+</head>
+<body>
+  <section class="blog">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Categories</h1>
+        </div>
+        <%@categories.each do |category|%>
+          <article class="col-md-4">
+            <h2><a href="/category/<%=category.id%>"><%=category.name%></a></h2>
+          </article>
+          <%end%>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

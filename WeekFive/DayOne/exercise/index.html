@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Exercise</title>
+  <style>
+    .oculto{
+      display:none;
+    }
+    .remove{
+      cursor:pointer;
+    }
+    ul{
+      list-style:none;
+    }
+  </style>
+</head>
+<body>
+  <p id="content"></p>
+  <button id="btn-change">Change phrase</button>
+  <form action="" id="form">
+    <input type="text" id="text-input">
+  </form>
+  <a href="" id="show-hide">Show phrases</a>
+  <div>
+    <ul class="phrases oculto"></ul>
+    <ul class="">
+      <li id="last-child"></li>
+    </ul>
+  </div>
+  <script src="jquery-3.0.0.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      var phrases = ['I like pie.','I like pizza','I like potatoes'];
+      var content = $('#content');
+      var button = $('#btn-change');
+      var form = $('#form');
+      var textInput = $('#text-input');
+      var toggle = $('#show-hide');
+      var phrasesContainer = $('.phrases');
+      var lastChild = $('#last-child');
+      function appendPhrases(){
+        phrasesContainer.html('');
+        $.each(phrases, function( index, value ) {
+          phrasesContainer.append('<li>'+ value +'<span class="remove" data-id="'+ index +'"> X</span></li>');
+        });
+        $('.remove').click(function(){
+          var index = $(this).attr('data-id');
+          phrases.splice(index,1);
+          appendPhrases();
+        });
+        lastChild.html('');
+      }
+      function changePhrase(){
+        var random = Math.floor((Math.random() * phrases.length -1) + 1);
+        content.html(phrases[random]);
+      }
+      button.click(function(){
+        changePhrase();
+      })
+      form.submit(function(e){
+          e.preventDefault();
+          phrases.push(textInput.val());
+          appendPhrases();
+      });
+      toggle.click(function(e){
+        e.preventDefault();
+        if(phrasesContainer.hasClass('oculto')){
+          phrasesContainer.removeClass('oculto');
+          $(this).html("Hide phrases")
+        }
+        else {
+          phrasesContainer.addClass('oculto');
+          $(this).html("Show phrases")
+        }
+      });
+      textInput.keydown(function(){
+        lastChild.html($(this).val());
+      })
+      changePhrase();
+      appendPhrases();
+    });
+  </script>
+</body>
+</html>

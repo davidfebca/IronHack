@@ -1,0 +1,7 @@
+<h1>Products list</h1>
+<ul>
+<%@products.each do |product|%>
+  <li><%=product.title%> <a href="/products/delete/<%=product.id%>">X</a> - Creeated by <%=product.user.name%> <a href="/products/details/<%=product.id%>">Details</a></li>
+<%end%>
+</ul>
+<a href="/products/new">New product</a>

@@ -1,0 +1,39 @@
+<section class="concerts">
+  <div class="container">
+    <div class="row">
+      <%@concerts.each do |concert|%>
+      <article class="concert-box col-md-4">
+        <%=image_tag(concert.image.url(:small))%>
+        <h2><%=concert.title%></h2>
+        <ul>
+          <li>Artist: <%=concert.artist.name%></li>
+          <li>City: <%=concert.city.name%></li>
+          <li>Location: <%=concert.venue%></li>
+          <li>Price: <%=concert.price%>€</li>
+          <li>Date: <%=concert.date%></li>
+        </ul>
+        <%=link_to "Read more", controller:"concerts",action:"details",id:concert.id%>
+      </article>
+      <%end%>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Next concerts</h2>
+      </div>
+      <%@next_concerts.each do |concert|%>
+      <article class="concert-box col-md-4">
+        <%=image_tag(concert.image.url(:small))%>
+        <h2><%=concert.title%></h2>
+        <ul>
+          <li>Artist: <%=concert.artist.name%></li>
+          <li>City: <%=concert.city.name%></li>
+          <li>Location: <%=concert.venue%></li>
+          <li>Price: <%=concert.price%>€</li>
+          <li>Date: <%=concert.date%></li>
+        </ul>
+        <%=link_to "Read more", controller:"concerts",action:"details",id:concert.id%>
+      </article>
+      <%end%>
+    </div>
+  </div>
+</section>

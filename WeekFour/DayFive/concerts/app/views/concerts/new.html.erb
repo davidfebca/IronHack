@@ -1,0 +1,35 @@
+<section class="concerts">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <ul>
+          <%@concerts.each do |concert|%>
+            <li><%=concert.title%> <%=link_to "Delete" , controller:"concerts",action:"delete",id:concert.id%></li>
+          <%end%>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Add new concert</h2>
+        <%= form_for @concert do |f|%>
+          <%= f.label :title %>
+          <%= f.text_field :title %><br/>
+          <%= f.label :venue %>
+          <%= f.text_field :venue %><br/>
+          <%= f.label :image %>
+          <%= f.file_field :image %><br/>
+          <%= f.label :price %>
+          <%= f.text_field :price %><br/>
+          <%= f.label :date %>
+          <%= f.date_field :date %><br/>
+          <%= f.label :description %>
+          <%= f.text_field :description %><br/>
+          <%= f.label :city %>
+          <%= f.collection_select :city_id, City.order(:name),:id,:name %><br/>
+          <%= f.label :artist %>
+          <%= f.collection_select :artist_id, Artist.order(:name),:id,:name %><br/>
+          <%= f.button%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</section>

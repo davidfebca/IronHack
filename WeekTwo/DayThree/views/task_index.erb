@@ -1,0 +1,20 @@
+<!-- views/add.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add | Online Calculator</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <h1>Welcome to my TodoList</h1>
+  <ul>
+    <%@tasks.each do |task|%>
+    <%if task.status%>
+      <li><a href="/complete_task/<%=task.id%>"><%=task.content%> completed</a> <a href="/delete_task/<%=task.id%>"> delete</a></li>
+      <%else%>
+      <li><a href="/complete_task/<%=task.id%>"><%=task.content%> pending </a><a href="/delete_task/<%=task.id%>"> delete</a></li>
+      <%end%>
+    <%end%>
+  </ul>
+  <a href="/new-task">New task</a>
+</html>

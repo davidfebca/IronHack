@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Concerts</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <header class="header">
+    <nav>
+      <div class="logo">
+        <i class="fa fa-play"></i> Concerts app
+      </div>
+      <ul>
+        <li><%=link_to "Home", controller:"home",action:"index"%></li>
+        <li><%=link_to "New concert", controller:"concerts",action:"new"%></li>
+        <li><%=link_to "Cities", controller:"cities",action:"index"%></li>
+        <li><%=link_to "Artists", controller:"artists",action:"index"%></li>
+        <li><%=link_to "Filter by price", controller:"tools",action:"price"%></li>
+        <li><%=link_to "Most commented", controller:"tools",action:"commented"%></li>
+      </ul>
+    </nav>
+  </header>
+<%= yield %>
+  <footer class="footer">
+    Super Copyright 2016
+  </footer>
+</body>
+</html>

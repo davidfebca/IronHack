@@ -1,0 +1,7 @@
+<h1>User list</h1>
+<ul>
+<%@users.each do |user|%>
+  <li><%=user.name%> <a href="/users/delete/<%=user.id%>">X</a></li>
+<%end%>
+</ul>
+<a href="/users/new">New user</a>

@@ -1,0 +1,8 @@
+david = User.create(username:"david",password:"1234")
+miguel = User.create(username:"miguel",password:"1234")
+movie1 = Movie.create(title:"El Padrino",poster:"",year:"1992",synopsis:"una desc")
+movie2 = Movie.create(title:"El Padrino 2",poster:"",year:"1992",synopsis:"una desc padrino 2")
+comment1 = Comment.create(content:"Muy buena", user:david, movie:movie1)
+comment2 = Comment.create(content:"demasiado buena", user:david, movie:movie1)
+comment3 = Comment.create(content:"aburrida", user:miguel, movie:movie1)
+comment4 = Comment.create(content:"mejor que la primera", user:miguel, movie:movie2)

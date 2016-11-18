@@ -1,0 +1,12 @@
+<h1>details</h1>
+<%= form_for @my_product do |f|%>
+  <%= f.label :title%>
+  <%= f.text_field :title%>
+  <%= f.label :description%>
+  <%= f.text_field :description%>
+  <%= f.label :deadline%>
+  <%= f.date_field :deadline%>
+  <%= f.label :minimum%>
+  <%= f.text_field :minimum%>
+  <%= f.button%>
+<%end%>

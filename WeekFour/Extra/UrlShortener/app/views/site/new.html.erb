@@ -1,0 +1,10 @@
+<h1>Url shortener</h1>
+
+<form action="/site/create" method ="POST">
+  <div>
+    <label for="link">Name</label>
+    <input type="text" name="link[original]" id="link">
+  </div>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <button type="submit">Shortener link</button>
+</form>

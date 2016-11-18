@@ -1,0 +1,18 @@
+<section class="concerts">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Most commented</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <ul>
+          <%@concerts.each do |concert|%>
+            <li><%=concert.title%> <%=link_to "Details" , controller:"concerts",action:"details",id:concert.id%></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

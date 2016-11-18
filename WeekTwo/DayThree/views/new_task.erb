@@ -1,0 +1,17 @@
+<!-- views/add.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add | Online Calculator</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <h1>Create task</h1>
+  <div class="box">
+    <form action="/create_task" method="POST">
+      <input type="text" name="content" placeholder="Task content">
+      <br/>
+      <button type="submit" name="operation">ADD</button>
+    </form>
+  </div>
+</html>

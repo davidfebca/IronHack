@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Exercise</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+    .oculto{
+      display:none;
+    }
+    ul{
+      list-style:none;
+    }
+  </style>
+</head>
+<body>
+  <form action="" id="form">
+    <input type="text" id="text-input">
+  </form>
+  <div class="container">
+    <div class="row">
+      <div class="content">
+
+      </div>
+    </div>
+  </div>
+ <div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-body">
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+
+   </div>
+ </div>
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+      //refactor using object oriented!!!
+      var artistUrl = "https://api.spotify.com/v1/search?type=artist&query=";
+      var albumUrl = "https://api.spotify.com/v1/artists/";
+      var trackUrl = " https://api.spotify.com/v1/albums/";
+      var input = $('#text-input');
+      function searchTracks(element){
+        var id = element.attr("data-id");
+        $.ajax(trackUrl + id + '/tracks', {
+           success: function(data) {
+             var formatedResult = "";
+             for(var i = 0 ; i < data.items.length;i++){
+                 formatedResult += '<a href="'+ data.items[i]["uri"] +'" target="_blank">'+ data.items[i]["name"]+'</a><br/>';
+              }
+              $('.modal-body').html(formatedResult);
+              $("#myModal").modal();
+           },
+           error: function() {
+             console.log("Could not load tracks")
+           }
+        });
+      }
+      function searchAlbums(element){
+        var id = element.attr("data-id");
+        $.ajax(albumUrl + id + '/albums', {
+           success: function(data) {
+             var formatedResult = "";
+             for(var i = 0 ; i < data.items.length;i++){
+                 formatedResult += '<div class="col-md-3"><span class="single-album" data-id="'+ data.items[i]["id"] +'">'+ data.items[i]["name"]+'</span></div>';
+               }
+            element.find('.albums').html(formatedResult);
+            $('.single-album').one( "click", function() {
+              searchTracks($(this))
+            })
+           },
+           error: function() {
+             console.log("Could not load albums")
+           }
+        });
+      }
+      $('#form').submit(function(e){
+        e.preventDefault();
+          $.ajax(artistUrl + input.val(), {
+             success: function(data) {
+               var formatedResult = "";
+               for(var i = 0 ; i < data.artists.items.length;i++){
+                 if(data.artists.items[i]["images"][0] != undefined){
+                   formatedResult += '<div class="col-md-12 artist" data-id="'+ data.artists.items[i]["id"] +'"><h2>'+ data.artists.items[i]["name"]+'</h2><img width="300" class="img-responsive" src="'+ data.artists.items[i]["images"][0]["url"] +'"/><div class="albums"></div></div>';
+                 }
+                };
+                $('.content').html(formatedResult);
+                $('.artist').one( "click", function() {
+                  searchAlbums($(this))
+                })
+             },
+             error: function() {
+               console.log("Could not load artists")
+             }
+          });
+      });
+    });
+  </script>
+</body>
+</html>

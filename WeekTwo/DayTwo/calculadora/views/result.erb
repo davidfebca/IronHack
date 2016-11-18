@@ -1,0 +1,15 @@
+<!-- views/add.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add | Online Calculator</title>
+</head>
+<body>
+  <h1>Super Calculator</h1>
+  <h2>Response</h2>
+  <%=@result%>
+  <form action="/save" method="POST">
+    <input type="hidden" name="content" id="content" value="<%=@result%>"/>
+    <button type="submit" name="operation" value="divide">SAVE</button>
+  </form>
+</html>

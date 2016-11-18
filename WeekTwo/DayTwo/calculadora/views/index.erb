@@ -1,0 +1,27 @@
+<!-- views/add.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add | Online Calculator</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <h1>Super Calculator</h1>
+  <img src="img/logo.png"/>
+  <div class="box">
+    <form action="/calculate" method="POST">
+      <input type="number" name="first_number" placeholder="1st number">
+      <br/>
+      <input type="number" name="second_number" placeholder="2nd number">
+      <br/>
+      <input type="text" name="zone" placeholder="timezone">
+      <br/>
+      <button type="submit" name="operation" value="addition">ADD</button>
+      <button type="submit" name="operation" value="substract">SUBSTRACT</button>
+      <button type="submit" name="operation" value="multiply">MULTIPLY</button>
+      <button type="submit" name="operation" value="divide">DIVIDE</button>
+      <button type="submit" name="operation" value="count">COUNT 0 TO FIRST NUMBER</button>
+      <button type="submit" name="operation" value="timezone">TIMEZONE</button>
+    </form>
+  </div>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Movie Game</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <section class="movies">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>My awesome Movie game!!</h1>
+          <input type="text" class="form-control" style="margin-bottom:15px;" id="criteria"/>
+          <button class="form-control" style="margin-bottom:20px;" id="submit">BUSCAR</button>
+        </div>
+      </div>
+      <div class="row loading oculto">
+        <img src="loader_gif.gif" style="display:block; margin:0 auto;"/>
+      </div>
+      <div class="row" id="content">
+      </div>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+  <script>
+  $(document).ready(function () {
+    var movieId = Math.floor(Math.random() * 8 + 1);
+    var correctYear = 0
+    $('#submit').click(function(){
+      $('.loading').show();
+      var value = $('#criteria').val()
+      $.post("/search/" + value,function(data) {
+        var total = ""
+        correctYear = data[movieId]["year"]
+        for(var i= 0;i<= 8;i++){
+          total += "<article data-year='" + data[i]["year"] + "' class='film col-md-4 animated fadeInUp '><img class='img-responsive' src='" + data[i]["poster"] + "'/><h2>" + data[i]["title"] + "</h2></article>"
+        }
+        $('.loading').hide();
+        $('#content').html(total)
+      });
+    });
+    $('.film').each(function(){
+      $(this).click(function(){
+          var year = $(this).attr("data-year");
+          if(year === correctYear){
+            alert("correct, you win")
+          }
+      });
+    })
+  });
+  </script>
+</body>
+</html>
